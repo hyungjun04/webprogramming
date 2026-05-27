@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>계산기</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    #wrapper {
+        transition: transform 0.15s ease-out;
+        transform: scale(1);
+    }
+
+    .calculator {
+        background-color: #eeeeee;
+        border: 1px solid #cccccc;
+        padding: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .calc-vertical {
+        width: 320px;
+        display: block;
+    }
+
+    .calc-horizontal {
+        width: 480px;
+        display: none;
+    }
+
+    .display-container {
+        background-color: white;
+        border: 1px solid #aaaaaa;
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: right; 
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    .display { 
+        font-size: 24px;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    td {
+        padding: 2px; 
+    }
+
+    .button1, .button2, .button3 {
+        width: 100%;
+        height: 50px;
+        border: 1px solid #bbbbbb;
+        cursor: pointer;
+    }
+
+    .button1 {
+        background-color: #e0e0e0;
+        font-size: 16px;
+    }
+
+    .button2 {
+        background-color: #ffcc00;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .button3 {
+        background-color: #fafafa;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 13px;
+    }
+    
+    .footer a {
+        color: blue;
+        text-decoration: underline;
+    }
+    
+    .footer p {
+        margin: 5px 0 0 0;
+        font-weight: bold;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div class="calculator calc-vertical" id="calc-vert">
+            <div class="display-container">
+                <span id="display1" class="display">0</span>
+            </div>
+            <table>
+                <tr>
+                    <td><button class="button1"></button></td>
+                    <td><button class="button1"></button></td>
+                    <td><button class="button1"></button></td>
+                    <td><button class="button1"></button></td>
+                </tr>
+                <tr>
+                    <td><button class="button1" onclick="clearDisplay()">CE</button></td>
+                    <td><button class="button1" onclick="sqrtButton()">√x</button></td>
+                    <td><button class="button1" onclick="percentButton()">%</button></td>
+                    <td><button class="button2" onclick="setOperator('/')">÷</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button3" onclick="numberButton(7)">7</button></td>
+                    <td><button class="button3" onclick="numberButton(8)">8</button></td>
+                    <td><button class="button3" onclick="numberButton(9)">9</button></td>
+                    <td><button class="button2" onclick="setOperator('*')">×</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button3" onclick="numberButton(4)">4</button></td>
+                    <td><button class="button3" onclick="numberButton(5)">5</button></td>
+                    <td><button class="button3" onclick="numberButton(6)">6</button></td>
+                    <td><button class="button2" onclick="setOperator('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button3" onclick="numberButton(1)">1</button></td>
+                    <td><button class="button3" onclick="numberButton(2)">2</button></td>
+                    <td><button class="button3" onclick="numberButton(3)">3</button></td>
+                    <td><button class="button2" onclick="setOperator('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button3" onclick="numberButton(0)">0</button></td>
+                    <td><button class="button3" onclick="decimalButton()">.</button></td>
+                    <td><button class="button3" onclick="toggleSign()">+/-</button></td>
+                    <td><button class="button2" onclick="equalButton()">=</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button1" onclick="piButton()">π</button></td>
+                    <td><button class="button1" onclick="sqButton()">x²</button></td>
+                    <td><button class="button1">R2</button></td>
+                    <td><button class="button1">R0</button></td>
+                </tr>
+            </table>
+            <div class="footer">
+                <a href="#">Get a Widget for this Calculator</a>
+                <p>(◕‿◕)20233103 김형준</p> 
+            </div>
+        </div>
+
+        <div class="calculator calc-horizontal" id="calc-horiz">
+            <div class="display-container">
+                <span id="display2" class="display">0</span>
+            </div>
+            <table>
+                <tr>
+                    <td><button class="button1"></button></td>
+                    <td><button class="button1"></button></td>
+                    <td><button class="button3" onclick="numberButton(7)">7</button></td>
+                    <td><button class="button3" onclick="numberButton(8)">8</button></td>
+                    <td><button class="button3" onclick="numberButton(9)">9</button></td>
+                    <td><button class="button2" onclick="setOperator('/')">÷</button></td>
+                    <td><button class="button1">R2</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button1"></button></td>
+                    <td><button class="button1"></button></td>
+                    <td><button class="button3" onclick="numberButton(4)">4</button></td>
+                    <td><button class="button3" onclick="numberButton(5)">5</button></td>
+                    <td><button class="button3" onclick="numberButton(6)">6</button></td>
+                    <td><button class="button2" onclick="setOperator('*')">×</button></td>
+                    <td><button class="button1">R0</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button1" onclick="piButton()">π</button></td>
+                    <td><button class="button1" onclick="sqButton()">x²</button></td>
+                    <td><button class="button3" onclick="numberButton(1)">1</button></td>
+                    <td><button class="button3" onclick="numberButton(2)">2</button></td>
+                    <td><button class="button3" onclick="numberButton(3)">3</button></td>
+                    <td><button class="button2" onclick="setOperator('-')">-</button></td>
+                    <td><button class="button1" onclick="clearDisplay()">CE</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button1" onclick="sqrtButton()">√x</button></td>
+                    <td><button class="button1" onclick="percentButton()">%</button></td>
+                    <td><button class="button3" onclick="numberButton(0)">0</button></td>
+                    <td><button class="button3" onclick="decimalButton()">.</button></td>
+                    <td><button class="button3" onclick="toggleSign()">+/-</button></td>
+                    <td><button class="button2" onclick="setOperator('+')">+</button></td>
+                    <td><button class="button2" onclick="equalButton()">=</button></td>
+                </tr>
+            </table>
+            <div class="footer">
+                <a href="#">Get a Widget for this Calculator</a>
+                <p>(◕‿◕)20233103 김형준</p> 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let curValue = 0;
+        let operator = '';
+        let waitingForNew = false;
+        
+        let scale = 1.0;
+        let currentMode = 'vertical';
+
+        window.addEventListener('wheel', function(e) {
+            if (e.deltaY < 0) {
+                scale += 0.05; 
+            } else {
+                scale -= 0.05;
+            }
+
+            if (scale < 0.7) scale = 0.7;
+            if (scale > 1.6) scale = 1.6;
+
+            document.getElementById('wrapper').style.transform = `scale(${scale})`;
+
+            let vertCalc = document.getElementById('calc-vert');
+            let horizCalc = document.getElementById('calc-horiz');
+
+            if (scale >= 1.2 && currentMode !== 'horizontal') {
+                vertCalc.style.display = 'none';
+                horizCalc.style.display = 'block';
+                currentMode = 'horizontal';
+                
+                let val = document.getElementById('display1').innerHTML;
+                document.getElementById('display2').innerHTML = val;
+            } 
+            else if (scale < 1.2 && currentMode !== 'vertical') {
+                vertCalc.style.display = 'block';
+                horizCalc.style.display = 'none';
+                currentMode = 'vertical';
+                
+                let val = document.getElementById('display2').innerHTML;
+                document.getElementById('display1').innerHTML = val;
+            }
+        });
+
+        function updateDisplays(val) {
+            document.getElementById('display1').innerHTML = val;
+            document.getElementById('display2').innerHTML = val;
+        }
+
+        function getDisplayVal() {
+            if (currentMode === 'horizontal') {
+                return document.getElementById('display2').innerHTML;
+            } else {
+                return document.getElementById('display1').innerHTML;
+            }
+        }
+
+        function numberButton(num) {
+            let currentString = getDisplayVal();
+            if (waitingForNew) {
+                updateDisplays(num);
+                waitingForNew = false;
+            } else {
+                if (currentString === '0') {
+                    updateDisplays(num);
+                } else {
+                    updateDisplays(currentString + num);
+                }
+            }
+        }
+
+        function setOperator(op) {
+            if (operator && !waitingForNew) {
+                equalButton();
+            }
+            curValue = parseFloat(getDisplayVal());
+            operator = op;
+            waitingForNew = true;
+        }
+
+        function equalButton() {
+            let newValue = parseFloat(getDisplayVal());
+            let result = 0;
+
+            if (operator === '+') result = curValue + newValue;
+            else if (operator === '-') result = curValue - newValue;
+            else if (operator === '*') result = curValue * newValue;
+            else if (operator === '/') result = newValue === 0 ? "Error" : curValue / newValue;
+            else result = newValue;
+
+            if (result !== "Error") {
+                result = parseFloat(result.toFixed(8));
+            }
+
+            updateDisplays(result);
+            operator = '';
+            waitingForNew = true;
+        }
+
+        function decimalButton() {
+            let currentString = getDisplayVal();
+            if (waitingForNew) {
+                updateDisplays('0.');
+                waitingForNew = false;
+                return;
+            }
+            if (!currentString.includes('.')) {
+                updateDisplays(currentString + '.');
+            }
+        }
+
+        function toggleSign() {
+            let val = parseFloat(getDisplayVal());
+            updateDisplays((val * -1).toString());
+        }
+
+        function clearDisplay() {
+            updateDisplays('0');
+            curValue = 0;
+            operator = '';
+            waitingForNew = false;
+        }
+
+        function sqrtButton() {
+            let val = parseFloat(getDisplayVal());
+            updateDisplays(parseFloat(Math.sqrt(val).toFixed(8)).toString());
+            waitingForNew = true;
+        }
+
+        function sqButton() {
+            let val = parseFloat(getDisplayVal());
+            updateDisplays(parseFloat(Math.pow(val, 2).toFixed(8)).toString());
+            waitingForNew = true;
+        }
+
+        function piButton() {
+            updateDisplays(parseFloat(Math.PI.toFixed(8)).toString());
+            waitingForNew = true;
+        }
+
+        function percentButton() {
+            let val = parseFloat(getDisplayVal());
+            updateDisplays(parseFloat((val / 100).toFixed(8)).toString());
+            waitingForNew = true;
+        }
+    </script>
+</body>
+</html>

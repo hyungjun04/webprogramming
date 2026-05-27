@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Bin</title>
+<style>
+    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        margin: 0;
+    }
+
+   
+    .calculator {
+        width: 320px;
+        background-color: #eeeeee;
+        border: 1px solid #cccccc;
+        padding: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    
+    .display-container {
+        background-color: white;
+        border: 1px solid #aaaaaa;
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: right; 
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    #display {
+        font-size: 24px;
+        color: #333;
+    }
+
+   
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    td {
+        padding: 2px; 
+    }
+
+    
+    .button1 {
+        background-color: #e0e0e0;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #bbbbbb;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+   
+    .button2 {
+        background-color: #ffcc00;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #bbbbbb;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    
+    .button3 {
+        background-color: #fafafa;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #bbbbbb;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+   
+    .footer {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 13px;
+    }
+    .footer a {
+        color: blue;
+        text-decoration: underline;
+    }
+    .footer p {
+        margin: 5px 0 0 0;
+        font-weight: bold;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display-container">
+            <span id="display">30</span>
+        </div>
+
+        <table>
+            <tr>
+                <td><button class="button1"></button></td>
+                <td><button class="button1"></button></td>
+                <td><button class="button1"></button></td>
+                <td><button class="button1"></button></td>
+            </tr>
+            <tr>
+                <td><button class="button1">CE</button></td>
+                <td><button class="button1">√x</button></td>
+                <td><button class="button1">%</button></td>
+                <td><button class="button2">÷</button></td>
+            </tr>
+            <tr>
+                <td><button class="button3">7</button></td>
+                <td><button class="button3">8</button></td>
+                <td><button class="button3">9</button></td>
+                <td><button class="button2">×</button></td>
+            </tr>
+            <tr>
+                <td><button class="button3">4</button></td>
+                <td><button class="button3">5</button></td>
+                <td><button class="button3">6</button></td>
+                <td><button class="button2">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="button3">1</button></td>
+                <td><button class="button3">2</button></td>
+                <td><button class="button3">3</button></td>
+                <td><button class="button2">+</button></td>
+            </tr>
+            <tr>
+                <td><button class="button3">0</button></td>
+                <td><button class="button3">.</button></td>
+                <td><button class="button3">+/-</button></td>
+                <td><button class="button2">=</button></td>
+            </tr>
+            <tr>
+                <td><button class="button1">π</button></td>
+                <td><button class="button1">x²</button></td>
+                <td><button class="button1">R2</button></td>
+                <td><button class="button1">R0</button></td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <a href="#">Get a Widget for this Calculator</a>
+            <p>(◕‿◕)20233103 김형준</p> </div>
+    </div>
+</body>
+</html>
